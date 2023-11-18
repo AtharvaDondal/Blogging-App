@@ -10,6 +10,7 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
   display:block;
   align-self: center;
+  text-align: center;
     
 }
 
@@ -26,9 +27,7 @@
   display:block;
   padding-left: 10px;
   max-width: 60%;
-}
-form{
-  margin: auto;
+
 }
 .input{
   min-height: 34px;
@@ -76,13 +75,16 @@ h1{
   width: 80px;
   height: 30px;
   font-size: 15px;
+  cursor: pointer;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-
 }
+
 
 .remove{
   background-color: rgb(230, 83, 83);
   display: table;
+  display: flex;
+  align-items: flex-end;
 }
 
 .blog-btn{
