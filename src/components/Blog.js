@@ -1,6 +1,5 @@
-import { useState,useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-//Blogging App using Hooks
 export default function Blog() {
   // const [title, setTitle] = useState("");
   // const [content, setContent] = useState("");
@@ -9,7 +8,19 @@ export default function Blog() {
     content: "",
   });
   const [blogs, setBlogs] = useState([]);
-  const titleRef = useRef(null)
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    titleRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    if (blogs.length && blogs[0].title) {
+      document.title = blogs[0].title;
+    } else {
+      document.title = "No Blogs!!";
+    }
+  }, [blogs]);
 
   //Passing the synthetic event as argument to stop refreshing the page on submit
   function handleSubmit(e) {
@@ -17,12 +28,12 @@ export default function Blog() {
     setBlogs([{ title: formData.title, content: formData.content }, ...blogs]);
     setFormData({ title: "", content: "" });
     // here we are using current property of ref
-    titleRef.current.focus()
+    titleRef.current.focus();
     console.log(blogs);
   }
 
-  function removeBlog(i){
-    setBlogs(blogs.filter((blog,index)=>i !== index))
+  function removeBlog(i) {
+    setBlogs(blogs.filter((blog, index) => i !== index));
   }
 
   return (
@@ -77,7 +88,9 @@ export default function Blog() {
           <p>{blog.content}</p>
 
           <div className="blog-btn">
-            <button onClick = {()=>removeBlog(index)}className="btn remove">Delete</button>
+            <button onClick={() => removeBlog(index)} className="btn remove">
+              Delete
+            </button>
           </div>
         </div>
       ))}
